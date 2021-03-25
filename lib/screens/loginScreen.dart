@@ -2,9 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/loginInput.dart';
 import './blogsScreen.dart';
+import '../providers/token.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -28,6 +30,11 @@ class _LoginScreenState extends State<LoginScreen> {
       headers: headers,
     );
     body = jsonDecode(response.body);
+    print(body["token"]);
+
+    final tokenData = Provider.of<Token>(context, listen: false);
+    tokenData.setToken(body["token"]);
+
     Navigator.of(context).pushReplacementNamed(BlogsScreen.routeName);
   }
 
