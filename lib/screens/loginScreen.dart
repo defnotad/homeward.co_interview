@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
 import '../widgets/loginInput.dart';
@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
       'Content-type': 'application/json; charset=UTF-8'
     };
 
-    Response response = await post(
+    http.Response response = await http.post(
       url,
       headers: headers,
     );
