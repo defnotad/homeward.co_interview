@@ -9,7 +9,7 @@ import '../widgets/blogListItem.dart';
 import '../models/blog.dart';
 
 class BlogsScreen extends StatefulWidget {
-  static final routeName = '/blogs-screen';
+  static const routeName = '/blogs-screen';
 
   @override
   _BlogsScreenState createState() => _BlogsScreenState();
@@ -30,8 +30,8 @@ class _BlogsScreenState extends State<BlogsScreen> {
     http.Response response = await http.get(url, headers: headers);
 
     final responseBody = jsonDecode(response.body);
+    final List<Blog> blogsList = [];
 
-    final blogsList = [];
     responseBody.forEach((blog) {
       final newBlog = Blog(
         id: int.parse(blog["id"]),
@@ -55,14 +55,20 @@ class _BlogsScreenState extends State<BlogsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final blogs = Provider.of<Token>(context).blogs;
     return Scaffold(
       appBar: AppBar(
-        title: Text('ha'),
+        title: Text('Blogs'),
       ),
-      // body: ListView.builder(
-      //   itemCount: responseBody,
-      //   itemBuilder: (ctx, i) => BlogListItem(),
-      // ),
+      body: ListView.builder(
+        itemCount: blogs.length,
+        itemBuilder: (ctx, i) => BlogListItem(
+          blogs[i].id,
+          blogs[i].title,
+          blogs[i].imageUrl,
+          blogs[i].createdAt,
+        ),
+      ),
     );
   }
 }

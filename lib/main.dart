@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import './screens/loginScreen.dart';
 import './screens/blogsScreen.dart';
 import './providers/token.dart';
+import './screens/blogEntryScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         home: LoginScreen(),
         routes: {
           BlogsScreen.routeName: (ctx) => BlogsScreen(),
+          BlogEntryScreen.routeName: (ctx) => BlogEntryScreen(),
         },
       ),
     );
