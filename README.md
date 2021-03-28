@@ -1,6 +1,6 @@
 # homeward_interview
 
-A new Flutter project.
+My app for the company homeward.co.
 
 ## Getting Started
 
